@@ -17,6 +17,7 @@ def stat():
 
     return stat
 
+
 @app_views.route("/stats", methods=['GET'], strict_slashes=False)
 def status_obj():
     """
