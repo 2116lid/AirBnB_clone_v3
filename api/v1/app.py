@@ -8,7 +8,6 @@ import os
 
 app = Flask(__name__)
 
-app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
 
 
@@ -19,10 +18,4 @@ def tear_app():
 
 
 if __name__ == "__main__":
-    api_host = os.getenv('HBNB_API_HOST', '0.0.0.0')
-    api_port = int(os.getenv('HBNB_API_PORT', '5000'))
-    app.run(
-        host=api_host,
-        port=api_port,
-        threaded=True
-    )
+    app.run(os.getenv("HBNB_API_HOST"), os.getenv("HBNB_API_PORT"))
