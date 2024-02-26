@@ -15,6 +15,9 @@ def places_get(city_id):
     """
     place_list = []
     city_obj = storage.get("City", str(city_id))
+
+    if city_obj is None:
+        abort(404)
     for obj in city_obj.places:
         place_list.append(obj.to_dict())
 
