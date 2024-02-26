@@ -33,12 +33,13 @@ def place_route(city_id):
     place_json = request.get_json(silent=True)
     if place_json is None:
         abort(400, 'Not a JSON')
-    if not storage.get("User", place_json["user_id"]):
-        abort(404)
-    if not storage.get("City", city_id):
+    city_obj = storage.get("City", str(city_id))
+    if city_obj is None:
         abort(404)
     if "user_id" not in place_json:
         abort(400, 'Missing user_id')
+    if storage.get("User", place_json["user_id"]) is None:
+        abort(404)
     if "name" not in place_json:
         abort(400, 'Missing name')
 
