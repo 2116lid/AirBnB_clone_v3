@@ -70,7 +70,9 @@ def amenity_put(amenity_id):
         if key not in ["id", "created_at", "updated_at"]:
             setattr(fetch_obj, key, val)
     fetch_obj.save()
-    return jsonify(fetch_obj.to_dict())
+    res = jsonify(fetch_obj.to_dict())
+    res.status_code = 200
+    return res
 
 
 @app_views.route("/amenities/<amenity_id>",  methods=["DELETE"],
