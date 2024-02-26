@@ -31,7 +31,7 @@ def amenity_route():
     if "name" not in amenity_json:
         abort(400, 'Missing name')
 
-    new_amenity = Amenity(**am_json)
+    new_amenity = Amenity(**amenity_json)
     new_amenity.save()
     res = jsonify(new_amenity.to_dict())
     res.status_code = 201
