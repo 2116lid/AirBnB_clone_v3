@@ -34,12 +34,18 @@ def review_route(place_id):
     review_json = request.get_json(silent=True)
     if review_json is None:
         abort(400, 'Not a JSON')
-    if not storage.get("Place", place_id):
+
+    place_obj = storage.get("Place", place_id)
+    if place_obj is None:
         abort(404)
-    if not storage.get("User", review_json["user_id"]):
-        abort(404)
+
     if "user_id" not in review_json:
         abort(400, 'Missing user_id')
+
+    user_obj = storage.get("User", review_json["user_id"])
+    if user_obj is None:
+        abort(404)
+
     if "text" not in review_json:
         abort(400, 'Missing text')
 
