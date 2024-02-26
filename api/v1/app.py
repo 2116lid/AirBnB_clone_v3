@@ -34,4 +34,5 @@ def err_handle(exception):
 
 
 if __name__ == "__main__":
-    app.run(os.getenv("HBNB_API_HOST"), os.getenv("HBNB_API_PORT"))
+    app.run(os.getenv("HBNB_API_HOST"), os.getenv("HBNB_API_PORT"),
+            threaded=True)
